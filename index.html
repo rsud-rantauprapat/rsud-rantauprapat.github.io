@@ -2,276 +2,101 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Form Penilaian Karyawan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Example</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
         }
-        .form-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        #submitBtn {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #resultTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        #resultTable th, #resultTable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        #resultTable th {
-            background-color: #f2f2f2;
-        }
-        #overallResult {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
+        h1 {
             text-align: center;
-            font-weight: bold;
+            color: #333;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            animation: marquee 10s linear infinite;
         }
-        .sangat-baik {
-            background-color: #4CAF50;
-            color: white;
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-        .kurang-baik {
-            background-color: #FF5722;
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px;
+            background-color: #007BFF;
             color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2 style="text-align: center;">Form Penilaian Karyawan</h2>
-        <form id="penilaianForm">
-            <div class="form-group">
-                <label>Nama Lengkap</label>
-                
-                <select name="namaLengkap" required>
-                    <option value="">Nama Pegawai</option>
-                    <option value="Sarmila Ritonga, S.Kep">Sarmila Ritonga, S.Kep</option>
-                    <option value="Ruhaeni, S.Kep">Ruhaeni, S.Kep</option>
-                    <option value="Novita Sari Dewi Harahap, Amk">Novita Sari Dewi Harahap, Amk</option>
-                    <option value="Riska Efrilda,S.Kep,Ns">Riska Efrilda,S.Kep,Ns</option>
-                    <option value="Lisna Perawati, S.Kep">Lisna Perawati, S.Kep</option>
-                    <option value="Rahmi Yunianti Siagian,S.Kep,Ns">Rahmi Yunianti Siagian,S.Kep,Ns</option>
-                    <option value="Nazifa Zahara Daulay, Amk">Nazifa Zahara Daulay, Amk</option>
-                    <option value="Elisa Putri Dahliana Siahaan,S.Kep,Ns">Elisa Putri Dahliana Siahaan,S.Kep,Ns</option>
-                    <option value="Maria Septina Munthe , Amk">Maria Septina Munthe , Amk</option>
-                    <option value="Wiwik Supianti, S.Kep,Ners">Wiwik Supianti, S.Kep,Ners</option>
-                    <option value="Mirna Santi, Amk">Mirna Santi, Amk</option>
-                    <option value="Imam Munandar Ritonga, Amk">Imam Munandar Ritonga, Amk</option>
-                    <option value="Putri Sari Saragih, Am.Keb">Putri Sari Saragih, Am.Keb</option>
-                    <option value="Azli Syarief Hasibuan, S.Kep">Azli Syarief Hasibuan, S.Kep</option>
-                    <option value="Dwi Aulia Siregar, Am.Keb">Dwi Aulia Siregar, Am.Keb</option>  
-                    <option value="Norma Wija Palantin, Amk">Norma Wija Palantin, Amk</option>
-                    <option value="Fatimah Sari, Am.Keb">Fatimah Sari, Am.Keb</option>
-                    <option value="Devi Wahyu Sari, Am.Keb">Devi Wahyu Sari, Am.Keb</option>
-                    <option value="Sabran,Amk">Sabran,Amk</option>
-                    <option value="Arif Fadilla Lubis, Amk">Arif Fadilla Lubis, Amk</option>
-                    <option value="Ali Halomoan, Amk">Ali Halomoan, Amk</option>
-                    <option value="Resty Hoky Br. Siahaan,S.Kep,Ners">Resty Hoky Br. Siahaan,S.Kep,Ners</option>
-                    <option value="Tiasmi Dalimunthe, Amk">Tiasmi Dalimunthe, Amk</option>
-                    <option value="Erlinawati Lubis, Amk">Erlinawati Lubis, Amk</option>
-                    <option value="Siti Aisyah">Siti Aisyah</option>
-                </select>
-            </div>
 
-            <div class="form-group">
-                <label>Disiplin</label>
-                <select name="kepemimpinan" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Tanggung Jawab</label>
-                <select name="komunikasi" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Stabilitas Emosi</label>
-                <select name="kerjaSama" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Inisiatif & Kreatifitas</label>
-                <select name="inisiatif" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kemampuan & Intelektual</label>
-                <select name="kedisiplinan" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kemampuan Komunikasi</label>
-                <select name="kreativitas" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kepemimpinan</label>
-                <select name="profesionalisme" required>
-                    <option value="">Pilih Kriteria</option>
-                    <option value="30">Sangat Kurang (30)</option>
-                    <option value="50">Kurang (50)</option>
-                    <option value="75">Baik (75)</option>
-                    <option value="90">Sangat Baik (90)</option>
-                </select>
-            </div>
-            <button type="submit" id="submitBtn">Simpan Penilaian</button>
-        </form>
+    <div><h1>From Penilaian RSUD</h1></div>
 
-        <div id="overallResult"></div>
-
-        <table id="resultTable" style="display:none;">
-            <thead>
-                <tr>
-                    <th>Kriteria</th>
-                    <th>Nilai</th>
-                </tr>
-            </thead>
-            <tbody id="resultBody"></tbody>
-            <tfoot>
-                <tr>
-                    <th>Total Skor</th>
-                    <th id="totalSkor"></th>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="button-container">
+        <a href="form/Non Bedah Melati.html" class="button">Non Bedah Melati</a>
+        <a href="form/Admisi.html" class="button">Admisi</a>
+        <a href="form/Anasthesi.html" class="button">Anasthesi</a>
+        <a href="form/Bersalin Kemuning.html" class="button">Bersalin Kemuning</a>
+        <a href="form/CSSD.html" class="button">CSSD</a>
+        <a href="form/ENDOSCOPY.html" class="button">ENDOSCOPY</a>
+        <a href="form/Haemodialisa .html" class="button">Haemodialisa</a>
+        <a href="form/IBS.html" class="button">IBS</a>
+        <a href="form/ICCU.html" class="button">ICCU</a>
+        <a href="form/ICU.html" class="button">ICU</a>
+        <a href="form/IGD.html" class="button">IGD</a>
+        <a href="form/Isolasi Terpadu Teratai.html" class="button">Isolasi Terpadu Teratai</a>
+        <a href="form/Keuangan.html" class="button">Keuangan</a>
+        <a href="form/MPP.html" class="button">MPP</a>
+        <a href="form/NICU.html" class="button">NICU</a>
+        <a href="form/Obgyn.html" class="button">Obgyn</a>
+        <a href="form/P. ADIKSI.html" class="button">P Adiksi</a>
+        <a href="form/P. ANAK.html" class="button">P ANAK</a>
+        <a href="form/P. BEDAH.html" class="button">P Bedah</a>
+        <a href="form/P. CARDIOLOGI.html" class="button">P CARDIOLOGI</a>
+        <a href="form/P. GERIATRI.html" class="button">P. GERIATRI</a>
+        <a href="form/P. GIGI.html" class="button">P GIGI</a>
+        <a href="form/P. KBRS.html" class="button">P. KBRS</a>
+        <a href="form/P. KULIT.html" class="button">P. KULIT</a>
+        <a href="form/P. MATA.html" class="button">P. MATA </a>
+        <a href="form/P. NEOROLOGI.html" class="button">P. NEOROLOGI</a>
+        <a href="form/P. ORTOPEDHY.html" class="button">P. ORTOPEDHY</a>
+        <a href="form/P. PARU.html" class="button">P. PARU</a>
+        <a href="form/P. Penyakit Dalam.html" class="button">P. Penyakit Dalam </a>
+        <a href="form/P. PSIKIATRI .html" class="button">P. PSIKIATRI</a>
+        <a href="form/P. TB DOTS.html" class="button">P. TB DOTS</a>
+        <a href="form/P. THT.html" class="button">P. THT</a>
+        <a href="form/Pelayanan.html" class="button">Pelayanan</a>
+        <a href="form/Pemulasaran Jenazah dan Ambulance.html" class="button">Pemulasaran Jenazah dan Ambulance</a>
+        <a href="form/Perinatologi.html" class="button">Perinatologi</a>
+        <a href="form/Radiologi.html" class="button">Radiologi</a>
+        <a href="form/Rawat Inap Bedah Mawar.html" class="button">Rawat Inap Bedah Mawar</a>
+        <a href="form/Rawat Inap Psikiatri Anggrek.html" class="button">Rawat Inap Psikiatri Anggrek</a>
+        <a href="form/Rekam Medik.html" class="button">Rekam Medik</a>
+        <a href="form/SDM dan Peningkatan Mutu.html" class="button">SDM Peningkatan Mutu</a>
+        <a href="form/VCT.html" class="button">VCT</a>
+        <a href="form/VIP Tulip Lavender.html" class="button">VIP Tulip Lavender</a>
+        <a href="form/Zaal Anak Seroja.html" class="button">Zaal Anak Seroja</a>
+        <a href="form/Zall Wanita Flamboyan.html" class="button">Zall Wanita Flamboyan</a>
     </div>
 
-    <script>
-        document.getElementById('penilaianForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            const resultBody = document.getElementById('resultBody');
-            const resultTable = document.getElementById('resultTable');
-            const overallResult = document.getElementById('overallResult');
-            const totalSkorElement = document.getElementById('totalSkor');
-            
-            // Bersihkan tabel sebelumnya
-            resultBody.innerHTML = '';
-            
-            let totalSkor = 0;
-            
-            // Tambahkan baris untuk setiap kriteria
-            for (const [kriteria, nilai] of Object.entries(data)) {
-                // Lewati field nama lengkap
-                if (kriteria === 'namaLengkap') continue;
-
-                const nilaiAngka = parseInt(nilai);
-                totalSkor += nilaiAngka;
-                
-                const row = resultBody.insertRow();
-                const cellKriteria = row.insertCell(0);
-                const cellNilai = row.insertCell(1);
-                
-                cellKriteria.textContent = kriteria.charAt(0).toUpperCase() + kriteria.slice(1);
-                cellNilai.textContent = nilaiAngka;
-            }
-            
-            // Tambahkan baris nama di tabel hasil
-            const namaRow = resultBody.insertRow();
-            const cellNamaLabel = namaRow.insertCell(0);
-            const cellNamaValue = namaRow.insertCell(1);
-            cellNamaLabel.textContent = 'Nama';
-            cellNamaValue.textContent = data.namaLengkap;
-            
-            // Tampilkan total skor
-            totalSkorElement.textContent = totalSkor;
-            resultTable.style.display = 'table';
-            
-            // Tentukan kualifikasi
-            overallResult.textContent = totalSkor >= 400 
-                ? 'Penilaian: SANGAT BAIK' 
-                : 'Penilaian: KURANG BAIK';
-            
-            overallResult.className = totalSkor >= 400 
-                ? 'sangat-baik' 
-                : 'kurang-baik';
-            
-            // Kirim data ke Google Sheets (contoh simulasi)
-            const dataToSubmit = {
-                ...data,
-                totalSkor,
-                timestamp: new Date().toISOString()
-            };
-
-            fetch('https://script.google.com/macros/s/AKfycby9sjI0-Tv3tGvJOCtU_oTRg5IGUKDvK53kv8BPRhPC2rkl6yZkgn69JMymlNxd5oyPHw/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                cache: 'no-cache',
-                body: JSON.stringify(dataToSubmit)
-            })
-            .then(response => {
-                console.log('Data terkirim ke spreadsheet');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
 </body>
 </html>
+
