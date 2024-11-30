@@ -3,100 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Example</title>
+    <title>Sistem Navigasi Ruangan RSUD Rantauprapat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+            background-color: #f0f4f8;
+            font-family: 'Arial', sans-serif;
         }
-        h1 {
-            text-align: center;
-            color: #333;
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-            animation: marquee 10s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .button-container {
+        .room-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            max-width: 800px;
-            margin: auto;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
-        .button {
-            display: inline-block;
-            padding: 15px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .room-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #e6e9f0);
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
         }
-        .button:hover {
-            background-color: #0056b3;
+        .room-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+        .search-input {
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">Form Penilaian Pegawai</h1>
+            <h2 class="text-xl text-gray-600">RSUD Rantauprapat</h2>
+        </header>
 
-    <div><h1>From Penilaian RSUD</h1></div>
+        <div class="mb-8">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Cari Ruangan..." 
+                class="search-input w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            >
+        </div>
 
-    <div class="button-container">
-        <a href="form/Non Bedah Melati.html" class="button">Non Bedah Melati</a>
-        <a href="form/Admisi.html" class="button">Admisi</a>
-        <a href="form/Anasthesi.html" class="button">Anasthesi</a>
-        <a href="form/Bersalin Kemuning.html" class="button">Bersalin Kemuning</a>
-        <a href="form/CSSD.html" class="button">CSSD</a>
-        <a href="form/ENDOSCOPY.html" class="button">ENDOSCOPY</a>
-        <a href="form/Haemodialisa .html" class="button">Haemodialisa</a>
-        <a href="form/IBS.html" class="button">IBS</a>
-        <a href="form/ICCU.html" class="button">ICCU</a>
-        <a href="form/ICU.html" class="button">ICU</a>
-        <a href="form/IGD.html" class="button">IGD</a>
-        <a href="form/Isolasi Terpadu Teratai.html" class="button">Isolasi Terpadu Teratai</a>
-        <a href="form/Keuangan.html" class="button">Keuangan</a>
-        <a href="form/MPP.html" class="button">MPP</a>
-        <a href="form/NICU.html" class="button">NICU</a>
-        <a href="form/Obgyn.html" class="button">Obgyn</a>
-        <a href="form/P. ADIKSI.html" class="button">P Adiksi</a>
-        <a href="form/P. ANAK.html" class="button">P ANAK</a>
-        <a href="form/P. BEDAH.html" class="button">P Bedah</a>
-        <a href="form/P. CARDIOLOGI.html" class="button">P CARDIOLOGI</a>
-        <a href="form/P. GERIATRI.html" class="button">P. GERIATRI</a>
-        <a href="form/P. GIGI.html" class="button">P GIGI</a>
-        <a href="form/P. KBRS.html" class="button">P. KBRS</a>
-        <a href="form/P. KULIT.html" class="button">P. KULIT</a>
-        <a href="form/P. MATA.html" class="button">P. MATA </a>
-        <a href="form/P. NEOROLOGI.html" class="button">P. NEOROLOGI</a>
-        <a href="form/P. ORTOPEDHY.html" class="button">P. ORTOPEDHY</a>
-        <a href="form/P. PARU.html" class="button">P. PARU</a>
-        <a href="form/P. Penyakit Dalam.html" class="button">P. Penyakit Dalam </a>
-        <a href="form/P. PSIKIATRI .html" class="button">P. PSIKIATRI</a>
-        <a href="form/P. TB DOTS.html" class="button">P. TB DOTS</a>
-        <a href="form/P. THT.html" class="button">P. THT</a>
-        <a href="form/Pelayanan.html" class="button">Pelayanan</a>
-        <a href="form/Pemulasaran Jenazah dan Ambulance.html" class="button">Pemulasaran Jenazah dan Ambulance</a>
-        <a href="form/Perinatologi.html" class="button">Perinatologi</a>
-        <a href="form/Radiologi.html" class="button">Radiologi</a>
-        <a href="form/Rawat Inap Bedah Mawar.html" class="button">Rawat Inap Bedah Mawar</a>
-        <a href="form/Rawat Inap Psikiatri Anggrek.html" class="button">Rawat Inap Psikiatri Anggrek</a>
-        <a href="form/Rekam Medik.html" class="button">Rekam Medik</a>
-        <a href="form/SDM dan Peningkatan Mutu.html" class="button">SDM Peningkatan Mutu</a>
-        <a href="form/VCT.html" class="button">VCT</a>
-        <a href="form/VIP Tulip Lavender.html" class="button">VIP Tulip Lavender</a>
-        <a href="form/Zaal Anak Seroja.html" class="button">Zaal Anak Seroja</a>
-        <a href="form/Zall Wanita Flamboyan.html" class="button">Zall Wanita Flamboyan</a>
+        <div id="roomContainer" class="room-grid">
+            <!-- Ruangan akan dimuat secara dinamis -->
+        </div>
     </div>
 
+    <script>
+        const rooms = [
+    { name: "Non Bedah Melati", icon: "🌼", category: "Ruang Perawatan", file: "form/Non Bedah Melati.html" },
+    { name: "Admisi", icon: "📋", category: "Administrasi", file: "form/Admisi.html" },
+    { name: "Anasthesi", icon: "💉", category: "Medis", file: "form/Anasthesi.html" },
+    { name: "Bersalin Kemuning", icon: "👶", category: "Kebidanan", file: "form/Bersalin Kemuning.html" },
+    { name: "CSSD", icon: "🧼", category: "Sterilisasi", file: "form/CSSD.html" },
+    { name: "ENDOSCOPY", icon: "🔬", category: "Diagnostik", file: "form/ENDOSCOPY.html" },
+    { name: "Haemodialisa", icon: "💧", category: "Medis Khusus", file: "form/Haemodialisa .html" },
+    { name: "IBS", icon: "🏥", category: "Bedah", file: "form/IBS.html" },
+    { name: "ICCU", icon: "❤️", category: "Intensif", file: "form/ICCU.html" },
+    { name: "ICU", icon: "⚕️", category: "Intensif", file: "form/ICU.html" },
+    { name: "IGD", icon: "🚑", category: "Gawat Darurat", file: "form/IGD.html" },
+    { name: "Isolasi Terpadu Teratai", icon: "🛡️", category: "Khusus", file: "form/Isolasi Terpadu Teratai.html" },
+    { name: "Keuangan", icon: "💰", category: "Administrasi", file: "form/Keuangan.html" },
+    { name: "MPP", icon: "📊", category: "Administrasi", file: "form/MPP.html" },
+    { name: "NICU", icon: "👶", category: "Intensif", file: "form/NICU.html" },
+    { name: "Obgyn", icon: "♀️", category: "Kebidanan", file: "form/Obgyn.html" },
+    { name: "P Adiksi", icon: "🧠", category: "Spesialis", file: "form/P. ADIKSI.html" },
+    { name: "P ANAK", icon: "👧", category: "Spesialis", file: "form/P. ANAK.html" },
+    { name: "P Bedah", icon: "🩺", category: "Spesialis", file: "form/P. BEDAH.html" },
+    { name: "P CARDIOLOGI", icon: "❤️", category: "Spesialis", file: "form/P. CARDIOLOGI.html" },
+    { name: "P. GERIATRI", icon: "👵", category: "Spesialis", file: "form/P. GERIATRI.html" },
+    { name: "P GIGI", icon: "🦷", category: "Spesialis", file: "form/P. GIGI.html" },
+    { name: "P. KBRS", icon: "🩺", category: "Spesialis", file: "form/P. KBRS.html" },
+    { name: "P. KULIT", icon: "🧴", category: "Spesialis", file: "form/P. KULIT.html" },
+    { name: "P. MATA", icon: "👁️", category: "Spesialis", file: "form/P. MATA.html" },
+    { name: "P. NEOROLOGI", icon: "🧠", category: "Spesialis", file: "form/P. NEOROLOGI.html" },
+    { name: "P. ORTOPEDHY", icon: "🦴", category: "Spesialis", file: "form/P. ORTOPEDHY.html" },
+    { name: "P. PARU", icon: "🫁", category: "Spesialis", file: "form/P. PARU.html"l" },
+    { name: "P. Penyakit Dalam", icon: "🩺", category: "Spesialis", file: "form/P. Penyakit Dalam.html" },
+    { name: "P. PSIKIATRI", icon: "😌", category: "Spesialis", file: "form/P. PSIKIATRI .html" },
+    { name: "P. TB DOTS", icon: "🦠", category: "Spesialis", file: "form/P. TB DOTS.html" },
+    { name: "P. THT", icon: "👂", category: "Spesialis", file: "form/P. THT.html" },
+    { name: "Pelayanan", icon: "🏥", category: "Umum", file: "form/Pelayanan.html" },
+    { name: "Pemulasaran Jenazah dan Ambulance", icon: "🚑", category: "Layanan Khusus", file: "form/Pemulasaran Jenazah dan Ambulance.html" },
+    { name: "Perinatologi", icon: "👶", category: "Kebidanan", file: "form/Perinatologi.html" },
+    { name: "Radiologi", icon: "📸", category: "Diagnostik", file: "form/Radiologi.html" },
+    { name: "Rawat Inap Bedah Mawar", icon: "🌹", category: "Ruang Perawatan", file: "form/Rawat Inap Bedah Mawar.html" },
+    { name: "Rawat Inap Psikiatri Anggrek", icon: "🌺", category: "Ruang Perawatan", file: "form/Rawat Inap Psikiatri Anggrek.html" },
+    { name: "Rekam Medik", icon: "📁", category: "Administrasi", file: "form/Rekam Medik.html" },
+    { name: "SDM Peningkatan Mutu", icon: "📈", category: "Administrasi", file: "form/SDM dan Peningkatan Mutu.html" },
+    { name: "VCT", icon: "🩺", category: "Layanan Khusus", file: "form/VCT.html" },
+    { name: "VIP Tulip Lavender", icon: "🌷", category: "Ruang VIP", file: "form/VIP Tulip Lavender.html" },
+    { name: "Zaal Anak Seroja", icon: "👧", category: "Ruang Anak", file: "form/Zaal Anak Seroja.html" },
+    { name: "Zall Wanita Flamboyan", icon: "♀️", category: "Ruang Khusus", file: "form/Zall Wanita Flamboyan.html" }
+];
+
+        const roomContainer = document.getElementById('roomContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderRooms(roomList) {
+            roomContainer.innerHTML = '';
+            roomList.forEach(room => {
+                const roomCard = document.createElement('div');
+                roomCard.className = 'room-card p-6 rounded-xl text-center cursor-pointer';
+                roomCard.innerHTML = `
+                    <div class="text-6xl mb-4">${room.icon}</div>
+                    <h3 class="font-bold text-lg mb-2 text-blue-800">${room.name}</h3>
+                    <p class="text-sm text-gray-600">${room.category}</p>
+                `;
+                roomCard.addEventListener('click', () => {
+                    // Buka halaman spesifik untuk setiap ruangan
+                    window.location.href = room.file;
+                });
+                roomContainer.appendChild(roomCard);
+            });
+        }
+
+        function searchRooms() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredRooms = rooms.filter(room => 
+                room.name.toLowerCase().includes(searchTerm) || 
+                room.category.toLowerCase().includes(searchTerm)
+            );
+            renderRooms(filteredRooms);
+        }
+
+        // Render semua ruangan saat pertama kali dimuat
+        renderRooms(rooms);
+
+        // Tambahkan event listener untuk pencarian
+        searchInput.addEventListener('input', searchRooms);
+
+        // Fungsi untuk membuat file HTML dasar untuk setiap ruangan
+        function generateRoomTemplate(roomName) {
+            return `
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruangan ${roomName} - RSUD Rantauprapat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">${roomName}</h1>
+            <a href="index.html" class="text-blue-600 hover:underline">Kembali ke Navigasi</a>
+        </header>
+        
+        <div class="bg-white p-8 rounded-xl shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Informasi Ruangan</h2>
+            <p>Detail dan informasi spesifik untuk ruangan ${roomName} akan ditambahkan di sini.</p>
+        </div>
+    </div>
 </body>
 </html>
+            `;
+        }
 
+        // Fungsi untuk membuat file-file HTML ruangan (hanya contoh, biasanya ini dilakukan di sisi server)
+        function createRoomFiles() {
+            rooms.forEach(room => {
+                // Dalam praktiknya, ini akan dilakukan di sisi server
+                console.log(`Membuat file: ${room.file}`);
+                // Contoh sederhana untuk demonstrasi
+                localStorage.setItem(room.file, generateRoomTemplate(room.name));
+            });
+        }
+
+        // Panggil fungsi untuk membuat file-file ruangan
+        createRoomFiles();
+    </script>
+</body>
+</html>
