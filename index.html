@@ -55,51 +55,270 @@
 
     <script>
         const rooms = [
-    { name: "Non Bedah Melati", icon: "🌼", category: "Ruang Perawatan", file: "form/Non Bedah Melati.html" },
-    { name: "Admisi", icon: "📋", category: "Administrasi", file: "form/Admisi.html" },
-    { name: "Anasthesi", icon: "💉", category: "Medis", file: "form/Anasthesi.html" },
-    { name: "Bersalin Kemuning", icon: "👶", category: "Kebidanan", file: "form/Bersalin Kemuning.html" },
-    { name: "CSSD", icon: "🧼", category: "Sterilisasi", file: "form/CSSD.html" },
-    { name: "ENDOSCOPY", icon: "🔬", category: "Diagnostik", file: "form/ENDOSCOPY.html" },
-    { name: "Haemodialisa", icon: "💧", category: "Medis Khusus", file: "form/Haemodialisa .html" },
-    { name: "IBS", icon: "🏥", category: "Bedah", file: "form/IBS.html" },
-    { name: "ICCU", icon: "❤️", category: "Intensif", file: "form/ICCU.html" },
-    { name: "ICU", icon: "⚕️", category: "Intensif", file: "form/ICU.html" },
-    { name: "IGD", icon: "🚑", category: "Gawat Darurat", file: "form/IGD.html" },
-    { name: "Isolasi Terpadu Teratai", icon: "🛡️", category: "Khusus", file: "form/Isolasi Terpadu Teratai.html" },
-    { name: "Keuangan", icon: "💰", category: "Administrasi", file: "form/Keuangan.html" },
-    { name: "MPP", icon: "📊", category: "Administrasi", file: "form/MPP.html" },
-    { name: "NICU", icon: "👶", category: "Intensif", file: "form/NICU.html" },
-    { name: "Obgyn", icon: "♀️", category: "Kebidanan", file: "form/Obgyn.html" },
-    { name: "P Adiksi", icon: "🧠", category: "Spesialis", file: "form/P. ADIKSI.html" },
-    { name: "P ANAK", icon: "👧", category: "Spesialis", file: "form/P. ANAK.html" },
-    { name: "P Bedah", icon: "🩺", category: "Spesialis", file: "form/P. BEDAH.html" },
-    { name: "P CARDIOLOGI", icon: "❤️", category: "Spesialis", file: "form/P. CARDIOLOGI.html" },
-    { name: "P. GERIATRI", icon: "👵", category: "Spesialis", file: "form/P. GERIATRI.html" },
-    { name: "P GIGI", icon: "🦷", category: "Spesialis", file: "form/P. GIGI.html" },
-    { name: "P. KBRS", icon: "🩺", category: "Spesialis", file: "form/P. KBRS.html" },
-    { name: "P. KULIT", icon: "🧴", category: "Spesialis", file: "form/P. KULIT.html" },
-    { name: "P. MATA", icon: "👁️", category: "Spesialis", file: "form/P. MATA.html" },
-    { name: "P. NEOROLOGI", icon: "🧠", category: "Spesialis", file: "form/P. NEOROLOGI.html" },
-    { name: "P. ORTOPEDHY", icon: "🦴", category: "Spesialis", file: "form/P. ORTOPEDHY.html" },
-    { name: "P. PARU", icon: "🫁", category: "Spesialis", file: "form/P. PARU.html"l" },
-    { name: "P. Penyakit Dalam", icon: "🩺", category: "Spesialis", file: "form/P. Penyakit Dalam.html" },
-    { name: "P. PSIKIATRI", icon: "😌", category: "Spesialis", file: "form/P. PSIKIATRI .html" },
-    { name: "P. TB DOTS", icon: "🦠", category: "Spesialis", file: "form/P. TB DOTS.html" },
-    { name: "P. THT", icon: "👂", category: "Spesialis", file: "form/P. THT.html" },
-    { name: "Pelayanan", icon: "🏥", category: "Umum", file: "form/Pelayanan.html" },
-    { name: "Pemulasaran Jenazah dan Ambulance", icon: "🚑", category: "Layanan Khusus", file: "form/Pemulasaran Jenazah dan Ambulance.html" },
-    { name: "Perinatologi", icon: "👶", category: "Kebidanan", file: "form/Perinatologi.html" },
-    { name: "Radiologi", icon: "📸", category: "Diagnostik", file: "form/Radiologi.html" },
-    { name: "Rawat Inap Bedah Mawar", icon: "🌹", category: "Ruang Perawatan", file: "form/Rawat Inap Bedah Mawar.html" },
-    { name: "Rawat Inap Psikiatri Anggrek", icon: "🌺", category: "Ruang Perawatan", file: "form/Rawat Inap Psikiatri Anggrek.html" },
-    { name: "Rekam Medik", icon: "📁", category: "Administrasi", file: "form/Rekam Medik.html" },
-    { name: "SDM Peningkatan Mutu", icon: "📈", category: "Administrasi", file: "form/SDM dan Peningkatan Mutu.html" },
-    { name: "VCT", icon: "🩺", category: "Layanan Khusus", file: "form/VCT.html" },
-    { name: "VIP Tulip Lavender", icon: "🌷", category: "Ruang VIP", file: "form/VIP Tulip Lavender.html" },
-    { name: "Zaal Anak Seroja", icon: "👧", category: "Ruang Anak", file: "form/Zaal Anak Seroja.html" },
-    { name: "Zall Wanita Flamboyan", icon: "♀️", category: "Ruang Khusus", file: "form/Zall Wanita Flamboyan.html" }
-];
+ { 
+    name: "Non Bedah Melati", 
+    icon: "🌼", 
+    category: "Ruang Perawatan", 
+    file: "form/non-bedah-melati.html" 
+},
+{ 
+    name: "Admisi", 
+    icon: "📋", 
+    category: "Administrasi", 
+    file: "form/admisi.html" 
+},
+{ 
+    name: "Anasthesi", 
+    icon: "💉", 
+    category: "Medis", 
+    file: "form/anasthesi.html" 
+},
+{ 
+    name: "Bersalin Kemuning", 
+    icon: "👶", 
+    category: "Kebidanan", 
+    file: "form/bersalin-kemuning.html" 
+},
+{ 
+    name: "CSSD", 
+    icon: "🧼", 
+    category: "Sterilisasi", 
+    file: "form/cssd.html" 
+},
+{ 
+    name: "ENDOSCOPY", 
+    icon: "🔬", 
+    category: "Diagnostik", 
+    file: "form/endoscopy.html" 
+},
+{ 
+    name: "Haemodialisa", 
+    icon: "💧", 
+    category: "Medis Khusus", 
+    file: "form/haemodialisa.html" 
+},
+{ 
+    name: "IBS", 
+    icon: "🏥", 
+    category: "Bedah", 
+    file: "form/ibs.html" 
+},
+{ 
+    name: "ICCU", 
+    icon: "❤️", 
+    category: "Intensif", 
+    file: "form/iccu.html" 
+},
+{ 
+    name: "ICU", 
+    icon: "⚕️", 
+    category: "Intensif", 
+    file: "form/icu.html" 
+},
+{ 
+    name: "IGD", 
+    icon: "🚑", 
+    category: "Gawat Darurat", 
+    file: "form/igd.html" 
+},
+{ 
+    name: "Isolasi Terpadu Teratai", 
+    icon: "🛡️", 
+    category: "Khusus", 
+    file: "form/isolasi-terpadu-teratai.html" 
+},
+{ 
+    name: "Keuangan", 
+    icon: "💰", 
+    category: "Administrasi", 
+    file: "form/keuangan.html" 
+},
+{ 
+    name: "MPP", 
+    icon: "📊", 
+    category: "Administrasi", 
+    file: "form/mpp.html" 
+},
+{ 
+    name: "NICU", 
+    icon: "👶", 
+    category: "Intensif", 
+    file: "form/nicu.html" 
+},
+{ 
+    name: "Obgyn", 
+    icon: "♀️", 
+    category: "Kebidanan", 
+    file: "form/obgyn.html" 
+},
+{ 
+    name: "P Adiksi", 
+    icon: "🧠", 
+    category: "Spesialis", 
+    file: "form/p-adiksi.html" 
+},
+{ 
+    name: "P ANAK", 
+    icon: "👧", 
+    category: "Spesialis", 
+    file: "form/p-anak.html" 
+},
+{ 
+    name: "P Bedah", 
+    icon: "🩺", 
+    category: "Spesialis", 
+    file: "form/p-bedah.html" 
+},
+{ 
+    name: "P CARDIOLOGI", 
+    icon: "❤️", 
+    category: "Spesialis", 
+    file: "form/p-cardiologi.html" 
+},
+{ 
+    name: "P. GERIATRI", 
+    icon: "👵", 
+    category: "Spesialis", 
+    file: "form/p-geriarti.html" 
+},
+{ 
+    name: "P GIGI", 
+    icon: "🦷", 
+    category: "Spesialis", 
+    file: "form/p-gigi.html" 
+},
+{ 
+    name: "P. KBRS", 
+    icon: "🩺", 
+    category: "Spesialis", 
+    file: "form/p-kbrs.html" 
+},
+{ 
+    name: "P. KULIT", 
+    icon: "🧴", 
+    category: "Spesialis", 
+    file: "form/p-kulit.html" 
+},
+{ 
+    name: "P. MATA", 
+    icon: "👁️", 
+    category: "Spesialis", 
+    file: "form/p-mata.html" 
+},
+{ 
+    name: "P. NEOROLOGI", 
+    icon: "🧠", 
+    category: "Spesialis", 
+    file: "form/p-neorologi.html" 
+},
+{ 
+    name: "P. ORTOPEDHY", 
+    icon: "🦴", 
+    category: "Spesialis", 
+    file: "form/p-ortopedhy.html" 
+},
+{ 
+    name: "P. PARU", 
+    icon: "🫁", 
+    category: "Spesialis", 
+    file: "form/p-paru.html" 
+},
+{ 
+    name: "P. Penyakit Dalam", 
+    icon: "🩺", 
+    category: "Spesialis", 
+    file: "form/p-penyakit-dalam.html" 
+},
+{ 
+    name: "P. PSIKIATRI", 
+    icon: "😌", 
+    category: "Spesialis", 
+    file: "form/p-psikiatri.html" 
+},
+{ 
+    name: "P. TB DOTS", 
+    icon: "🦠", 
+    category: "Spesialis", 
+    file: "form/p-tb-dots.html" 
+},
+{ 
+    name: "P. THT", 
+    icon: "👂", 
+    category: "Spesialis", 
+    file: "form/p-tht.html" 
+},
+{ 
+    name: "Pelayanan", 
+    icon: "🏥", 
+    category: "Umum", 
+    file: "form/pelayanan.html" 
+},
+{ 
+    name: "Pemulasaran Jenazah dan Ambulance", 
+    icon: "🚑", 
+    category: "Layanan Khusus", 
+    file: "form/pemulasaran-jenazah-dan-ambulance.html" 
+},
+{ 
+    name: "Perinatologi", 
+    icon: "👶", 
+    category: "Kebidanan", 
+    file: "form/perinatologi.html" 
+},
+{ 
+    name: "Radiologi", 
+    icon: "📸", 
+    category: "Diagnostik", 
+    file: "form/radiologi.html" 
+},
+{ 
+    name: "Rawat Inap Bedah Mawar", 
+    icon: "🌹", 
+    category: "Ruang Perawatan", 
+    file: "form/rawat-inap-bedah-mawar.html" 
+},
+{ 
+    name: "Rawat Inap Psikiatri Anggrek", 
+    icon: "🌺", 
+    category: "Ruang Perawatan", 
+    file: "form/rawat-inap-psikiatri-anggrek.html" 
+},
+{ 
+    name: "Rekam Medik", 
+    icon: "📁", 
+    category: "Administrasi", 
+    file: "form/rekam-medik.html" 
+},
+{ 
+    name: "SDM Peningkatan Mutu", 
+    icon: "📈", 
+    category: "Administrasi", 
+    file: "form/sdm-peningkatan-mutu.html" 
+},
+{ 
+    name: "VCT", 
+    icon: "🩺", 
+    category: "Layanan Khusus", 
+    file: "form/vct.html" 
+},
+{ 
+    name: "VIP Tulip Lavender", 
+    icon: "🌷", 
+    category: "Ruang VIP", 
+    file: "form/vip-tulip-lavender.html" 
+},
+{ 
+    name: "Zaal Anak Seroja", 
+    icon: "👧", 
+    category: "Ruang Anak", 
+    file: "form/zaal-anak-seroja.html" 
+},
+{ 
+    name: "Zall Wanita Flamboyan", 
+    icon: "♀️", 
+    category: "Ruang Khusus", 
+    file: "form/zall-wanita-flamboyan.html" 
+}];
 
         const roomContainer = document.getElementById('roomContainer');
         const searchInput = document.getElementById('searchInput');

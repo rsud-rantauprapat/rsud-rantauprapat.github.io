@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Penilaian Karyawan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #submitBtn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #resultTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        #resultTable th, #resultTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #resultTable th {
+            background-color: #f2f2f2;
+        }
+        #overallResult {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .sangat-baik {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .kurang-baik {
+            background-color: #FF5722;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Form Penilaian Karyawan Ruangan MPP</h2>
+        <form id="penilaianForm">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <select name="namaLengkap" required>
+                    <option value="">Nama Pegawai</option>
+                    <option value="Lamria Simorangkir, Amk">Lamria Simorangkir, Amk</option>
+                    <option value="Endang Tuti Ningsih, Amk">Endang Tuti Ningsih, Amk</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <label>Disiplin</label>
+                <select name="kepemimpinan" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tanggung Jawab</label>
+                <select name="komunikasi" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Stabilitas Emosi</label>
+                <select name="kerjaSama" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Inisiatif & Kreatifitas</label>
+                <select name="inisiatif" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kemampuan & Intelektual</label>
+                <select name="kedisiplinan" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kemampuan Komunikasi</label>
+                <select name="kreativitas" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kepemimpinan</label>
+                <select name="profesionalisme" required>
+                    <option value="">Pilih Kriteria</option>
+                    <option value="30">Sangat Kurang (30)</option>
+                    <option value="50">Kurang (50)</option>
+                    <option value="75">Baik (75)</option>
+                    <option value="90">Sangat Baik (90)</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn">Simpan Penilaian</button>
+        </form>
+
+        <div id="overallResult"></div>
+
+        <table id="resultTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Kriteria</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot>
+                <tr>
+                    <th>Total Skor</th>
+                    <th id="totalSkor"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('penilaianForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            const resultBody = document.getElementById('resultBody');
+            const resultTable = document.getElementById('resultTable');
+            const overallResult = document.getElementById('overallResult');
+            const totalSkorElement = document.getElementById('totalSkor');
+            
+            // Bersihkan tabel sebelumnya
+            resultBody.innerHTML = '';
+            
+            let totalSkor = 0;
+            
+            // Tambahkan baris untuk setiap kriteria
+            for (const [kriteria, nilai] of Object.entries(data)) {
+                // Lewati field nama lengkap
+                if (kriteria === 'namaLengkap') continue;
+
+                const nilaiAngka = parseInt(nilai);
+                totalSkor += nilaiAngka;
+                
+                const row = resultBody.insertRow();
+                const cellKriteria = row.insertCell(0);
+                const cellNilai = row.insertCell(1);
+                
+                cellKriteria.textContent = kriteria.charAt(0).toUpperCase() + kriteria.slice(1);
+                cellNilai.textContent = nilaiAngka;
+            }
+            
+            // Tambahkan baris nama di tabel hasil
+            const namaRow = resultBody.insertRow();
+            const cellNamaLabel = namaRow.insertCell(0);
+            const cellNamaValue = namaRow.insertCell(1);
+            cellNamaLabel.textContent = 'Nama';
+            cellNamaValue.textContent = data.namaLengkap;
+            
+            // Tampilkan total skor
+            totalSkorElement.textContent = totalSkor;
+            resultTable.style.display = 'table';
+            
+            // Tentukan kualifikasi
+            overallResult.textContent = totalSkor >= 400 
+                ? 'Penilaian: SANGAT BAIK' 
+                : 'Penilaian: KURANG BAIK';
+            
+            overallResult.className = totalSkor >= 400 
+                ? 'sangat-baik' 
+                : 'kurang-baik';
+            
+            // Kirim data ke Google Sheets (contoh simulasi)
+            const dataToSubmit = {
+                ...data,
+                totalSkor,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch('https://script.google.com/macros/s/AKfycbxmyDzns9VzpuNe82MyptiH-3tGXL1Vuy31Wytj06atIjkQDoqN9obTR-f1t2Adf4SV/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-cache',
+                body: JSON.stringify(dataToSubmit)
+            })
+            .then(response => {
+                console.log('Data terkirim ke spreadsheet');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
