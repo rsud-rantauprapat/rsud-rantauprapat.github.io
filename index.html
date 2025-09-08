@@ -4,150 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Penilaian Pegawai RSUD Rantauprapat</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Poppins -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            /* Menggunakan gambar yang diunggah sebagai background dengan overlay */
-            background-image: linear-gradient(rgba(240, 244, 248, 0.85), rgba(240, 244, 248, 0.85)), url('rsud-rantauprapat-labuhanbatu- (1).jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc; /* Latar belakang slate-50 */
+            font-family: 'Inter', sans-serif;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dbeafe' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .room-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 24px; /* Sedikit lebih banyak ruang */
+            gap: 24px;
         }
         .room-card {
-            transition: all 0.3s ease-in-out;
-            /* Efek kaca buram (frosted glass) yang modern */
-            background-color: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .room-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
         .search-input {
             transition: all 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
+            border: 1px solid #cbd5e1;
         }
         .search-input:focus {
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.5); /* Warna biru tua */
-            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+            border-color: #3b82f6;
         }
-        .header-title {
-             color: #1e3a8a; /* Biru tua untuk judul */
-        }
-        .header-subtitle {
-            color: #4b5563; /* Abu-abu gelap untuk subjudul */
+        .icon-svg {
+            width: 48px;
+            height: 48px;
+            margin-left: auto;
+            margin-right: auto;
+            stroke-width: 1.5;
+            color: #0284c7; /* sky-600 */
         }
     </style>
 </head>
 <body class="p-6 md:p-8">
-    <div class="container mx-auto">
+    <div class="container mx-auto max-w-7xl">
         <header class="text-center mb-10">
-            <h1 class="header-title text-4xl lg:text-5xl font-bold mb-3">Form Penilaian Pegawai</h1>
-            <h2 class="header-subtitle text-lg lg:text-xl">RSUD Rantauprapat</h2>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Form Penilaian Pegawai</h1>
+            <h2 class="text-lg md:text-xl text-slate-500">RSUD Rantauprapat</h2>
         </header>
 
         <div class="mb-8 max-w-2xl mx-auto">
             <input 
                 type="text" 
                 id="searchInput" 
-                placeholder="Cari Ruangan..." 
-                class="search-input w-full p-4 border-2 border-transparent rounded-lg focus:outline-none focus:border-blue-800 text-lg"
+                placeholder="Cari nama atau kategori ruangan..." 
+                class="search-input w-full p-3 rounded-lg focus:outline-none"
             >
         </div>
 
         <div id="roomContainer" class="room-grid">
-            <!-- Ruangan akan dimuat di sini oleh JavaScript -->
-        </div>
+            </div>
     </div>
 
     <script>
         const rooms = [
-            // Mengganti emoji dengan nama ikon dari Lucide
-            { name: "Ruangan Non Bedah Melati", icon: "flower-2", category: "Ruang Perawatan", file: "form/non-bedah-melati.html" },
-            { name: "Ruangan Admisi", icon: "clipboard-list", category: "Administrasi", file: "form/admisi.html" },
-            { name: "Ruangan Anasthesi", icon: "syringe", category: "Medis", file: "form/anasthesi.html" },
-            { name: "Ruangan Bersalin Kemuning", icon: "baby", category: "Kebidanan", file: "form/bersalin-kemuning.html" },
-            { name: "Ruangan CSSD", icon: "sparkles", category: "Sterilisasi", file: "form/cssd.html" },
-            { name: "Ruangan ENDOSCOPY", icon: "microscope", category: "Diagnostik", file: "form/endoscopy.html" },
-            { name: "Ruangan Haemodialisa", icon: "droplets", category: "Medis Khusus", file: "form/haemodialisa.html" },
-            { name: "Ruangan IBS", icon: "hospital", category: "Bedah", file: "form/ibs.html" },
-            { name: "Ruangan ICCU", icon: "heart-pulse", category: "Intensif", file: "form/iccu.html" },
-            { name: "Ruangan ICU", icon: "activity", category: "Intensif", file: "form/icu.html" },
-            { name: "Ruangan IGD", icon: "siren", category: "Gawat Darurat", file: "form/igd.html" },
-            { name: "Ruangan Isolasi Terpadu Teratai", icon: "shield", category: "Khusus", file: "form/isolasi-terpadu-teratai.html" },
-            { name: "Ruangan Keuangan", icon: "landmark", category: "Administrasi", file: "form/keuangan.html" },
-            { name: "Ruangan MPP", icon: "bar-chart-3", category: "Administrasi", file: "form/mpp.html" },
-            { name: "Ruangan NICU", icon: "teddy-bear", category: "Intensif", file: "form/nicu.html" },
-            { name: "Ruangan Obgyn", icon: "female", category: "Kebidanan", file: "form/obgyn.html" },
-            { name: "Ruangan P Adiksi", icon: "brain-circuit", category: "Spesialis", file: "form/p-adiksi.html" },
-            { name: "Ruangan P ANAK", icon: "child", category: "Spesialis", file: "form/p-anak.html" },
-            { name: "Ruangan P Bedah", icon: "scissors-square", category: "Spesialis", file: "form/p-bedah.html" },
-            { name: "Ruangan P CARDIOLOGI", icon: "heart-pulse", category: "Spesialis", file: "form/p-cardiologi.html" },
-            { name: "Ruangan P. GERIATRI", icon: "person-standing", category: "Spesialis", file: "form/p-geriarti.html" },
-            { name: "Ruangan P GIGI", icon: "tooth", category: "Spesialis", file: "form/p-gigi.html" },
-            { name: "Ruangan P. KBRS", icon: "stethoscope", category: "Spesialis", file: "form/p-kbrs.html" },
-            { name: "Ruangan P. KULIT", icon: "spray-can", category: "Spesialis", file: "form/p-kulit.html" },
-            { name: "Ruangan P. MATA", icon: "eye", category: "Spesialis", file: "form/p-mata.html" },
-            { name: "Ruangan P. NEOROLOGI", icon: "brain", category: "Spesialis", file: "form/p-neorologi.html" },
-            { name: "Ruangan P. ORTOPEDHY", icon: "bone", category: "Spesialis", file: "form/p-ortopedhy.html" },
-            { name: "Ruangan P. PARU", icon: "lungs", category: "Spesialis", file: "form/p-paru.html" },
-            { name: "Ruangan P. Penyakit Dalam", icon: "stethoscope", category: "Spesialis", file: "form/p-penyakit-dalam.html" },
-            { name: "Ruangan P. PSIKIATRI", icon: "smile", category: "Spesialis", file: "form/p-psikiatri.html" },
-            { name: "Ruangan P. TB DOTS", icon: "bug", category: "Spesialis", file: "form/p-tb-dots.html" },
-            { name: "Ruangan P. THT", icon: "ear", category: "Spesialis", file: "form/p-tht.html" },
-            { name: "Ruangan Pelayanan", icon: "concierge-bell", category: "Umum", file: "form/pelayanan.html" },
-            { name: "Ruangan Pemulasaran Jenazah dan Ambulance", icon: "car", category: "Layanan Khusus", file: "form/pemulasaran-jenazah-dan-ambulance.html" },
-            { name: "Ruangan Perinatologi", icon: "baby", category: "Kebidanan", file: "form/perinatologi.html" },
-            { name: "Ruangan Radiologi", icon: "radiation", category: "Diagnostik", file: "form/radiologi.html" },
-            { name: "Ruangan Rawat Inap Bedah Mawar", icon: "rose", category: "Ruang Perawatan", file: "form/rawat-inap-bedah-mawar.html" },
-            { name: "Ruangan Rawat Inap Psikiatri Anggrek", icon: "flower", category: "Ruang Perawatan", file: "form/rawat-inap-psikiatri-anggrek.html" },
-            { name: "Ruangan Rekam Medik", icon: "folder-kanban", category: "Administrasi", file: "form/rekam-medik.html" },
-            { name: "Ruangan SDM Peningkatan Mutu", icon: "trending-up", category: "Administrasi", file: "form/sdm-peningkatan-mutu.html" },
-            { name: "Ruangan VCT", icon: "users", category: "Layanan Khusus", file: "form/vct.html" },
-            { name: "Ruangan VIP Tulip Lavender", icon: "award", category: "Ruang VIP", file: "form/vip-tulip-lavender.html" },
-            { name: "Ruangan Zaal Anak Seroja", icon: "child", category: "Ruang Anak", file: "form/zaal-anak-seroja.html" },
-            { name: "Ruangan Zall Wanita Flamboyan", icon: "female", category: "Ruang Khusus", file: "form/zall-wanita-flamboyan.html" }
+            { name: "Ruangan Non Bedah Melati", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`, category: "Ruang Perawatan", file: "form/non-bedah-melati.html" },
+            { name: "Ruangan Admisi", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"></path></svg>`, category: "Administrasi", file: "form/admisi.html" },
+            { name: "Ruangan Anasthesi", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h.01M15 12h.01M10.5 16.5h3m-6.38 1.85l-1.22-.811a2.25 2.25 0 01-.868-2.05L4.5 9.5a2.25 2.25 0 012.25-2.25h9a2.25 2.25 0 012.25 2.25l.43 3.11a2.25 2.25 0 01-.868 2.05l-1.22.81c-.5.33-1.12.33-1.62 0l-1.22-.81a2.25 2.25 0 00-1.62 0l-1.22.81c-.5.33-1.12.33-1.62 0z"></path></svg>`, category: "Medis", file: "form/anasthesi.html" },
+            { name: "Ruangan Bersalin Kemuning", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.431-.264-.96-.264-1.391 0L3.24 7.938a2.126 2.126 0 00-1.09 1.86V19.5c0 1.144.92 2.063 2.055 2.063h15.6a2.063 2.063 0 002.055-2.063v-9.7a2.125 2.125 0 00-1.09-1.862l-6.72-4.102zM12 12.75h.008v.008H12v-.008z"></path></svg>`, category: "Kebidanan", file: "form/bersalin-kemuning.html" },
+            { name: "Ruangan CSSD", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"></path></svg>`, category: "Sterilisasi", file: "form/cssd.html" },
+            { name: "Ruangan ENDOSCOPY", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>`, category: "Diagnostik", file: "form/endoscopy.html" },
+            { name: "Ruangan Haemodialisa", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25c-2.488 0-4.5 1.12-4.5 2.5s2.012 2.5 4.5 2.5 4.5-1.12 4.5-2.5-2.012-2.5-4.5-2.5zM12 3C6.477 3 2 7.477 2 13.5S6.477 24 12 24s10-4.477 10-10.5S17.523 3 12 3z"></path></svg>`, category: "Medis Khusus", file: "form/haemodialisa.html" },
+            { name: "Ruangan IBS", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5M5.25 12h13.5m-13.5 3.75h13.5M3 3h18v18H3V3z"></path></svg>`, category: "Bedah", file: "form/ibs.html" },
+            { name: "Ruangan ICCU", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>`, category: "Intensif", file: "form/iccu.html" },
+            { name: "Ruangan ICU", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4 2 2 0 000-4zm0 8v2m0-2a2 2 0 100 4 2 2 0 000-4zm-4-4h-2m0 2a2 2 0 10-4 0 2 2 0 004 0zm12 0h-2m0 2a2 2 0 10-4 0 2 2 0 004 0z"></path></svg>`, category: "Intensif", file: "form/icu.html" },
+            { name: "Ruangan IGD", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>`, category: "Gawat Darurat", file: "form/igd.html" },
+            { name: "Ruangan Isolasi Terpadu", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.956 11.956 0 0112 3c2.373 0 4.59.833 6.303 2.214M12 21a11.956 11.956 0 01-6.303-2.214m0 0A11.953 11.953 0 013 12c0-2.373.833-4.59 2.214-6.303m13.572 0A11.953 11.953 0 0121 12c0 2.373-.833 4.59-2.214 6.303m-13.572 0l-3.37-3.37m13.572 0l3.37 3.37"></path></svg>`, category: "Khusus", file: "form/isolasi-terpadu-teratai.html" },
+            { name: "Ruangan Keuangan", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m3-3.75l-3 3m0 0l-3-3m3 3V1.5m6 9h.01M6 12h.01M6 15h.01m3-3h.01M9 15h.01m6-3h.01M15 15h.01M18 12h.01M18 15h.01"></path></svg>`, category: "Administrasi", file: "form/keuangan.html" },
+            { name: "Ruangan MPP", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.25-5.25"></path></svg>`, category: "Administrasi", file: "form/mpp.html" },
+            { name: "Ruangan NICU", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-5.234-4.266-9.5-9.5-9.5S.5 6.766.5 12s4.266 9.5 9.5 9.5S19.5 17.234 19.5 12zM9 10.5h6M9 13.5h6"></path></svg>`, category: "Intensif", file: "form/nicu.html" },
+            { name: "Ruangan Obgyn", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-5.747h11.494"></path></svg>`, category: "Kebidanan", file: "form/obgyn.html" },
+            { name: "Ruangan P Adiksi", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75c0-1.105-.895-2-2-2H8.75c-1.105 0-2 .895-2 2v10.5c0 1.105.895 2 2 2h6.5c1.105 0 2-.895 2-2V6.75zM8.75 12h6.5"></path></svg>`, category: "Spesialis", file: "form/p-adiksi.html" },
+            { name: "Ruangan P ANAK", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M15.182 9.818a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`, category: "Spesialis", file: "form/p-anak.html" },
+            { name: "Ruangan P Bedah", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3.5h9m-9 3.5h9M3.75 3v18h16.5V3H3.75z"></path></svg>`, category: "Spesialis", file: "form/p-bedah.html" },
+            { name: "Ruangan P CARDIOLOGI", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>`, category: "Spesialis", file: "form/p-cardiologi.html" },
+            { name: "Ruangan P. GERIATRI", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>`, category: "Spesialis", file: "form/p-geriarti.html" },
+            { name: "Ruangan P GIGI", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zm-2 10h4v-4h-4v4z"></path></svg>`, category: "Spesialis", file: "form/p-gigi.html" },
+            { name: "Ruangan P. KBRS", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2H7a2 2 0 00-2 2v2"></path></svg>`, category: "Spesialis", file: "form/p-kbrs.html" },
+            { name: "Ruangan P. KULIT", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M9 10h.01M15 10h.01M9 14h6"></path></svg>`, category: "Spesialis", file: "form/p-kulit.html" },
+            { name: "Ruangan P. MATA", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path></svg>`, category: "Spesialis", file: "form/p-mata.html" },
+            { name: "Ruangan P. NEOROLOGI", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>`, category: "Spesialis", file: "form/p-neorologi.html" },
+            { name: "Ruangan P. ORTOPEDHY", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`, category: "Spesialis", file: "form/p-ortopedhy.html" },
+            { name: "Ruangan P. PARU", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728M5.636 18.364a9 9 0 010-12.728m12.728 0L5.636 18.364"></path></svg>`, category: "Spesialis", file: "form/p-paru.html" },
+            { name: "Ruangan P. Penyakit Dalam", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`, category: "Spesialis", file: "form/p-penyakit-dalam.html" },
+            { name: "Ruangan P. PSIKIATRI", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>`, category: "Spesialis", file: "form/p-psikiatri.html" },
+            { name: "Ruangan P. TB DOTS", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M7 4h10M7 4H4m3 0v4m0-4h4m6 0v4m0-4h3m-3 0V4m0 0h-4m-6 16v-4m0 4H4m3 0v-4m0 4h4m6 0v-4m0 4h3m-3 0v-4m0 4h-4"></path></svg>`, category: "Spesialis", file: "form/p-tb-dots.html" },
+            { name: "Ruangan P. THT", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>`, category: "Spesialis", file: "form/p-tht.html" },
+            { name: "Ruangan Pelayanan", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-6 4h6m-6 4h6"></path></svg>`, category: "Umum", file: "form/pelayanan.html" },
+            { name: "Pemulasaran Jenazah & Ambulans", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 8.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0z"></path><path d="M19.5 15.5c-3.866 0-7-3.134-7-7s3.134-7 7-7"></path></svg>`, category: "Layanan Khusus", file: "form/pemulasaran-jenazah-dan-ambulance.html" },
+            { name: "Ruangan Perinatologi", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-5.747h11.494"></path></svg>`, category: "Kebidanan", file: "form/perinatologi.html" },
+            { name: "Ruangan Radiologi", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>`, category: "Diagnostik", file: "form/radiologi.html" },
+            { name: "Rawat Inap Bedah Mawar", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`, category: "Ruang Perawatan", file: "form/rawat-inap-bedah-mawar.html" },
+            { name: "Rawat Inap Psikiatri Anggrek", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`, category: "Ruang Perawatan", file: "form/rawat-inap-psikiatri-anggrek.html" },
+            { name: "Ruangan Rekam Medik", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 12h.01"></path></svg>`, category: "Administrasi", file: "form/rekam-medik.html" },
+            { name: "Ruangan SDM Peningkatan Mutu", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>`, category: "Administrasi", file: "form/sdm-peningkatan-mutu.html" },
+            { name: "Ruangan VCT", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`, category: "Layanan Khusus", file: "form/vct.html" },
+            { name: "Ruangan VIP Tulip Lavender", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M5 21v-4M3 19h4m9-14v4m-2-4h4m-2 16v-4m-2-2h4"></path><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v18h6V3H9z"></path></svg>`, category: "Ruang VIP", file: "form/vip-tulip-lavender.html" },
+            { name: "Ruangan Zaal Anak Seroja", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M15.182 9.818a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`, category: "Ruang Anak", file: "form/zaal-anak-seroja.html" },
+            { name: "Ruangan Zall Wanita Flamboyan", icon: `<svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-5.747h11.494"></path></svg>`, category: "Ruang Khusus", file: "form/zall-wanita-flamboyan.html" }
         ];
 
         const roomContainer = document.getElementById('roomContainer');
         const searchInput = document.getElementById('searchInput');
 
         function renderRooms(roomList) {
-            roomContainer.innerHTML = ''; // Kosongkan kontainer sebelum render
+            roomContainer.innerHTML = '';
+            if (roomList.length === 0) {
+                roomContainer.innerHTML = `<p class="text-center text-slate-500 col-span-full">Ruangan tidak ditemukan.</p>`;
+                return;
+            }
             roomList.forEach(room => {
                 const roomCard = document.createElement('div');
-                roomCard.className = 'room-card flex flex-col items-center justify-center p-6 rounded-2xl text-center cursor-pointer';
+                roomCard.className = 'room-card p-6 text-center cursor-pointer flex flex-col items-center justify-center';
                 roomCard.innerHTML = `
-                    <i data-lucide="${room.icon}" class="w-16 h-16 text-blue-900 mb-4 stroke-1"></i>
-                    <h3 class="font-semibold text-lg text-blue-900 leading-tight">${room.name}</h3>
-                    <p class="text-sm text-gray-600 mt-1">${room.category}</p>
+                    <div class="mb-4">${room.icon}</div>
+                    <h3 class="font-semibold text-base text-slate-800 mb-1">${room.name}</h3>
+                    <p class="text-sm text-slate-500">${room.category}</p>
                 `;
                 roomCard.addEventListener('click', () => {
-                    // Di aplikasi nyata, Anda akan mengarahkan ke halaman sebenarnya
-                    // window.location.href = room.file;
-                    alert(`Navigasi ke halaman untuk ${room.name}`);
+                    window.location.href = room.file;
                 });
                 roomContainer.appendChild(roomCard);
             });
-            // Setelah menambahkan elemen ke DOM, panggil createIcons() dari Lucide
-            lucide.createIcons();
         }
 
         function searchRooms() {
@@ -159,10 +149,7 @@
             renderRooms(filteredRooms);
         }
 
-        // Render semua ruangan saat pertama kali halaman dimuat
         renderRooms(rooms);
-
-        // Tambahkan event listener untuk input pencarian
         searchInput.addEventListener('input', searchRooms);
     </script>
 </body>
